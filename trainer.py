@@ -1,5 +1,6 @@
 import torch
 from torch import optim
+from tqdm import tqdm
 
 from loss import CLAP_Loss
 from model import get_embeds
@@ -18,7 +19,7 @@ def train_clap(model, train_loader, val_loader, num_epochs, MRL_DIMS, lr, temper
         model.clap.train()
 
         epoch_loss = 0
-        for audio, text in train_loader:
+        for audio, text in tqdm(train_loader):
             try:
                 optimizer.zero_grad()
 
@@ -40,7 +41,7 @@ def train_clap(model, train_loader, val_loader, num_epochs, MRL_DIMS, lr, temper
         print(f"Train Loss at epoch {epoch+1} is {epoch_loss}")
 
         epoch_val_loss = 0
-        for audio, text in val_loader:
+        for audio, text in tqdm(val_loader):
             try:
                 with torch.no_grad():
                     audio_embeds, text_embeds = get_embeds(model, audio, text)
