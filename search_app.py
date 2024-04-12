@@ -56,7 +56,7 @@ def clap_model_init():
 
 clap_model = clap_model_init()
 
-uri = "mongodb+srv://princev3844:Prince14%40@princecluster.zsdovyq.mongodb.net/?retryWrites=true&w=majority&appName=PrinceCluster"
+uri = "[YOUR_MONGODB_URI]"
 
 # Create a new client and connect to the server
 client = MongoClient(uri)
